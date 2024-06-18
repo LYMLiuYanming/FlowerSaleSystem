@@ -1,0 +1,76 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout:
+        30m
+spring:
+  servlet:
+    multipart:
+      max-file-size: 8MB
+      enabled: true
+      max-request-size: 100MB
+  devtools:
+    restart:
+      enabled: true
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  datasource:
+    username:
+      root
+    password:
+      1234
+    url:
+      jdbc:mysql://localhost:3306/flowers?serverTimezone=UTC&userUnicode=true&characterEncoding=utf-8
+    driver-class-name:
+      com.mysql.cj.jdbc.Driver
+    type:
+      com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize:
+        5
+      minIdle:
+        5
+      maxActive:
+        20
+      maxWait:
+        60000
+      timeBetweenEvictionRunsMillis:
+        60000
+      minEvictableIdleTimeMillis:
+        300000
+      validationQuery:
+        SELECT 1 FROM DUAL
+      testWhileIdle:
+        true
+      testOnBorrow:
+        false
+      testOnReturn:
+        false
+      poolPreparedStatements:
+        true
+      filters:
+        stat,wall,log4j
+      maxPoolPreparedStatementPerConnectionSize:
+        20
+      useGlobalDataSourceStat:
+        true
+      connectionProperties:
+        druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  jpa:
+      show-sql:
+        true
+      properties:
+        hibernate:
+          ddl-auto: None
+          format_sql: true
+  thymeleaf:
+    check-template-location: false
+
+mybatis-plus:
+  type-aliases-package:
+    com.flowers.example.pojo
+  mapper-locations:
+    classpath:mapper/*.xml
